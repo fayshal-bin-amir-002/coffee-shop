@@ -1,4 +1,5 @@
 import { toast } from 'react-toastify';
+import GoHome from '../components/GoHome';
 
 
 const AddCoffee = () => {
@@ -37,6 +38,7 @@ const AddCoffee = () => {
 
     return (
         <div className="container mx-auto">
+            <GoHome></GoHome>
             <section className="p-6 bg-[#F4F3F0] dark:text-gray-900 lg:px-28 lg:py-20">
                 <form onSubmit={handleAddCoffee} className="container flex flex-col mx-auto">
                     <fieldset className="flex flex-col gap-6 p-6 rounded-md dark:bg-gray-50">
