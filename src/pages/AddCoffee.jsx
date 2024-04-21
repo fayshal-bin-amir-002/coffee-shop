@@ -1,3 +1,6 @@
+import { toast } from 'react-toastify';
+
+
 const AddCoffee = () => {
 
     const handleAddCoffee = (e) => {
@@ -14,7 +17,22 @@ const AddCoffee = () => {
         const details = form.details.value;
         const photo = form.photo.value;
         
-        const newCoffee = { name, chef, supplier, taste, category, price, details, photo }; console.log(newCoffee);
+        const newCoffee = { name, chef, supplier, taste, category, price, details, photo };
+
+        fetch('http://localhost:3200/coffee', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newCoffee)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data.insertedId){
+                    form.reset();
+                    toast.success('Coffee added successfully');
+                }
+            })
     }
 
     return (
@@ -32,7 +50,7 @@ const AddCoffee = () => {
                                 <input type="text" name="name" placeholder="Enter coffee name" className="w-full p-3 mt-4 rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:ring-[#D2B48C] focus:outline-none dark:border-gray-300" />
                             </div>
                             <div className="col-span-full sm:col-span-3">
-                                <label   className="text-xl opacity-80 font-semibold ">supplier</label>
+                                <label   className="text-xl opacity-80 font-semibold ">Chef</label>
                                 <input name="chef" type="text" placeholder="Enter coffee chef" className="w-full p-3 mt-4 rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:ring-[#D2B48C] focus:outline-none dark:border-gray-300" />
                             </div>
                             <div className="col-span-full sm:col-span-3">
