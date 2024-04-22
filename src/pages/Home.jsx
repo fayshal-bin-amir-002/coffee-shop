@@ -10,7 +10,7 @@ const Home = () => {
     const [coffees, setCoffees] = useState(loadedCoffee);
 
     const handleDeleteCoffee = (id) => {
-        fetch(`http://localhost:3200/coffee/${id}`, {
+        fetch(`https://coffee-store-server-theta-ten.vercel.app/coffee/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())
